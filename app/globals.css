@@ -1,26 +1,138 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --orange-primary: #F47D31;
+  --orange-light: #FFB88C;
+  --orange-ultralight: #FFF5ED;
+  --yellow: #FFD166;
+  --teal: #06D6A0;
+  --cream: #FFFAF0;
+  --warm-gray: #F0EDE8;
+  --text-primary: #2B2D42;
+  --text-secondary: #6B6E8A;
+  --text-muted: #A0A3BD;
+  --bg-card: #FFFFFF;
+
+  --ease-gentle: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-nunito), -apple-system, sans-serif;
+  background-color: var(--cream);
+  color: var(--text-primary);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.font-display {
+  font-family: var(--font-dm-serif), Georgia, serif;
+}
+
+/* Range slider styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--warm-gray);
+  border-radius: 100px;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--orange-primary);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(244, 125, 49, 0.4);
+  transition: transform 150ms var(--ease-spring);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--orange-primary);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 8px rgba(244, 125, 49, 0.4);
+}
+
+/* Step transition animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.step-enter {
+  animation: fadeUp 400ms var(--ease-gentle) forwards;
+}
+
+.step-exit {
+  animation: fadeOut 300ms var(--ease-gentle) forwards;
+}
+
+/* Gauge arc animation */
+.gauge-arc {
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.34, 1.10, 0.64, 1);
+}
+
+/* Quote italic */
+.quote-text {
+  font-style: italic;
+}
+
+/* Card hover */
+.allocation-card {
+  transition: transform 200ms var(--ease-gentle), box-shadow 200ms var(--ease-gentle);
+}
+
+.allocation-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(43, 45, 66, 0.1);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--warm-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--orange-light);
+  border-radius: 100px;
 }
