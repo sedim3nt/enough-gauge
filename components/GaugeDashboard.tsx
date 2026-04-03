@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { EnoughConfig } from "@/app/page";
 import EnoughGauge from "./EnoughGauge";
+import PhilosopherReflection from "./PhilosopherReflection";
 
 interface Props {
   config: EnoughConfig;
@@ -431,6 +432,9 @@ export default function GaugeDashboard({ config, onReset, onUpdate }: Props) {
           ))}
         </div>
       </div>
+
+      {/* The Philosopher */}
+      <PhilosopherReflection config={config} />
 
       {/* Daily quote */}
       <div
